@@ -1,6 +1,6 @@
 /*
 	@title
-		main.h
+		main.cpp
 
 	@author
 		typedef
