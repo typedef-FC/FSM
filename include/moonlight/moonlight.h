@@ -100,6 +100,12 @@ struct moonlight_information
 	auto set_pm() -> void;
 
 	/// <summary>
+	/// Starts Moonlight.
+	/// </summary>
+	/// <returns></returns>
+	auto start() -> void;
+
+	/// <summary>
 	/// Pure Mode struct.
 	/// </summary>
 	struct
