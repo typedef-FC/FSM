@@ -417,6 +417,12 @@ int _stdcall WinMain( HINSTANCE, HINSTANCE, LPSTR, int )
 							ImGui::Checkbox("Always Update", &current_profile->data.pure_mode.always_update);
 
 							ImGui::SetCursorPosX(tab_cursor_position);
+							ImGui::Checkbox("Driverless (Veteran Only)", &current_profile->data.pure_mode.driverless);
+
+							ImGui::SetCursorPosX(tab_cursor_position);
+							ImGui::InputText("Zombie", &current_profile->data.pure_mode.zombie);
+
+							ImGui::SetCursorPosX(tab_cursor_position);
 							if (ImGui::Button("Set", ImVec2(100, 20)))
 							{
 								/// Update profile information.
