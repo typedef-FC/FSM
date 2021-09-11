@@ -116,6 +116,8 @@ struct moonlight_information
 		bool silence = false;
 		bool always_update = true;
 		bool hwid_spoofer = true;
+		bool driverless = false;
+		std::string zombie = "Steam.exe";
 	} pure_mode;
 };
 
