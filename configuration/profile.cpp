@@ -54,6 +54,8 @@ auto configuration_information::save_profile() -> void
 		json_information["Pure Mode"]["always_update"] = target_profile->data.pure_mode.always_update;
 		json_information["Pure Mode"]["hwid_spoofer"] = target_profile->data.pure_mode.hwid_spoofer;
 		json_information["Pure Mode"]["silence"] = target_profile->data.pure_mode.silence;
+		json_information["Pure Mode"]["driverless"] = target_profile->data.pure_mode.driverless;
+		json_information["Pure Mode"]["zombie"] = target_profile->data.pure_mode.zombie;
 
 		for (auto& i : g_moonlight.script_database)
 		{
@@ -84,6 +86,8 @@ auto configuration_information::load_profile(std::unique_ptr< profile_informatio
 		profile_to_load->data.pure_mode.always_update = json_information["Pure Mode"]["always_update"].get< bool >();
 		profile_to_load->data.pure_mode.hwid_spoofer = json_information["Pure Mode"]["hwid_spoofer"].get< bool >();
 		profile_to_load->data.pure_mode.silence = json_information["Pure Mode"]["silence"].get< bool >();
+		profile_to_load->data.pure_mode.driverless = json_information["Pure Mode"]["driverless"].get< bool >();
+		profile_to_load->data.pure_mode.zombie = json_information["Pure Mode"]["zombie"].get< std::string >();
 		profile_to_load->path = json_information["path"].get< std::string >();
 
 		for (auto& i : json_information["scripts"].items())
