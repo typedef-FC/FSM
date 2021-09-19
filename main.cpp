@@ -323,6 +323,7 @@ int _stdcall WinMain( HINSTANCE, HINSTANCE, LPSTR, int )
 						"Start Moonlight (Standalone)",
 						"Start Moonlight (CS:GO)",
 						"Start Moonlight (TF2)",
+						"Start Moonlight (CSS)",
 						"Read Patch Notes",
 						"Open General Logs",
 						"Open Warning Logs",
@@ -362,25 +363,32 @@ int _stdcall WinMain( HINSTANCE, HINSTANCE, LPSTR, int )
 								break;
 							}
 
-							case 3: /// Read Patch Notes
+							case 3: /// Start Moonlight (CSS)
+							{
+								ShellExecute(NULL, L"open", L"steam://rungameid/240/", NULL, NULL, SW_SHOWNORMAL);
+								g_moonlight.start();
+								break;
+							}
+
+							case 4: /// Read Patch Notes
 							{
 								ShellExecute(NULL, L"open", L"https://fantasy.cat/update/index.php?c=Moonlight", NULL, NULL, SW_SHOWNORMAL);
 								break;
 							}
 
-							case 4: /// Open General Logs
+							case 5: /// Open General Logs
 							{
 								ShellExecute(NULL, L"open", std::wstring( g_moonlight.directory.wstring() + L"\\logs\\log.txt" ).c_str(), NULL, NULL, SW_SHOWNORMAL);
 								break;
 							}
 
-							case 5: /// Open Warning Logs
+							case 6: /// Open Warning Logs
 							{
 								ShellExecute(NULL, L"open", std::wstring(g_moonlight.directory.wstring() + L"\\logs\\warning.txt").c_str(), NULL, NULL, SW_SHOWNORMAL);
 								break;
 							}
 
-							case 6: /// Open Error Logs
+							case 7: /// Open Error Logs
 							{
 								ShellExecute(NULL, L"open", std::wstring(g_moonlight.directory.wstring() + L"\\logs\\error.txt").c_str(), NULL, NULL, SW_SHOWNORMAL);
 								break;
@@ -398,6 +406,13 @@ int _stdcall WinMain( HINSTANCE, HINSTANCE, LPSTR, int )
 					{
 						if (ImGui::BeginTabItem("Pure Mode"))
 						{
+							static const char* hwid_spoofer_settings[] =
+							{
+								"No HWID Spoofer",
+								"HWID Spoofer",
+								"FULL HWID Spoofer",
+							};
+
 							ImGui::SetCursorPosX(tab_cursor_position);
 							ImGui::Checkbox("Ignore Whitelist", &current_profile->data.pure_mode.allow_non_default_scripts);
 
@@ -411,7 +426,10 @@ int _stdcall WinMain( HINSTANCE, HINSTANCE, LPSTR, int )
 							ImGui::Checkbox("VAC Tools", &current_profile->data.pure_mode.allow_vac_tools);
 
 							ImGui::SetCursorPosX(tab_cursor_position);
-							ImGui::Checkbox("HWID Spoofer", &current_profile->data.pure_mode.hwid_spoofer);
+							ImGui::PushItemWidth(150);
+							ImGui::Combo("HWID Spoofer Settings", &current_profile->data.pure_mode.hwid_spoofer, hwid_spoofer_settings, 3);
+							ImGui::PopItemWidth();
+							//ImGui::Checkbox("HWID Spoofer", );
 
 							ImGui::SetCursorPosX(tab_cursor_position);
 							ImGui::Checkbox("Always Update", &current_profile->data.pure_mode.always_update);
